@@ -3,7 +3,6 @@ import {
   NestModule,
   DynamicModule,
   MiddlewareConsumer,
-  RequestMethod,
 } from '@nestjs/common';
 import { LoggerModule } from 'nestjs-pino';
 import { pino, LoggerOptions } from 'pino';
@@ -11,13 +10,7 @@ import { pino, LoggerOptions } from 'pino';
 @Module({})
 export class PinoLoggerModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply()
-      .exclude({
-        method: RequestMethod.GET,
-        path: '/',
-      })
-      .forRoutes('*');
+    consumer.apply().forRoutes('*');
   }
 
   static forSource(config: { source: 'APP' }): DynamicModule {
@@ -29,7 +22,7 @@ export class PinoLoggerModule implements NestModule {
             const options: LoggerOptions = {
               level: 'trace',
               timestamp: pino.stdTimeFunctions.epochTime,
-              transport: { target: 'pino/file' }, // <--- enabling or disabling this controls whether Logger works in shutdown hooks or not
+              transport: undefined,
             };
 
             const pinoLogger = pino(options);

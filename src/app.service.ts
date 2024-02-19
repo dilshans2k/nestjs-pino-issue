@@ -11,16 +11,16 @@ export class AppService
   implements OnApplicationShutdown, OnModuleDestroy, BeforeApplicationShutdown
 {
   beforeApplicationShutdown(signal?: string) {
-    console.log('consolelog: beforeApplicationShutdown');
-    Logger.log('nestjs: beforeApplicationShutdown');
+    console.log('app: beforeApplicationShutdown');
+    Logger.log('app: beforeApplicationShutdown');
   }
   onApplicationShutdown(signal?: string) {
-    console.log('consolelog: onApplicationShutdown');
-    Logger.log('nestjs: onApplicationShutdown');
+    console.log('app: onApplicationShutdown');
+    Logger.log('app: onApplicationShutdown');
   }
   onModuleDestroy() {
-    console.log('consolelog: onModuleDestroy');
-    Logger.log('nestjs: onModuleDestroy');
+    console.log('app: onModuleDestroy');
+    Logger.log('app: onModuleDestroy');
   }
   getHello(): string {
     return 'Hello World!';
